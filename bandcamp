@@ -1,0 +1,4 @@
+jitter Unknown
+
+```sh
+SocketException: Connection timed out, host: stacker.net, port: 22 
