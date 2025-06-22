@@ -1,0 +1,56 @@
+Parameters
+String html The HTML contents.
+app.postMessage()
+undocumented
+
+app.error()
+undocumented
+
+app.localStorageSet()
+Set a value in browser local storage.
+
+Parameters
+String key The localStorage key to set. String value The localStorage value to set.
+
+app.localStorageGet()
+Gets a value from browser local storage.
+
+Parameters
+String key The key with which the value was set.
+
+Returns
+String The value, or undefined.
+
+app.requestPermission()
+undocumented
+
+app.print()
+Log information for debugging purposes to the server and to the connected browser console.
+
+Parameters
+... Any args to print.
+app.setHash()
+undocumented
+
+ssb.createIdentity()
+Create a new SSB identity.
+
+Returns
+String The created identity public key.
+
+ssb.addIdentity()
+undocumented
+
+ssb.deleteIdentity()
+undocumented
+
+ssb.swapWithServerIdentity()
+undocumented
+
+ssb.getIdentities()
+Get all SSB identities owned by the current user.
+
+Returns
+Array An array of public key strings.
+
+ssb.getPrivateKey()
