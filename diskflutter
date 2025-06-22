@@ -1,0 +1,40 @@
+adb shell dpm set-device-owner com.rosan.dhizuku/.server.DhizukuDAReceiverapp/views/gallery/template%script#img-wrapper-tmpl{style: "display:none;"}
+  .rg-image-wrapper
+    {{if itemsCount > 1}}
+    .rg-image-nav
+      %a.rg-image-nav-prev{href: "#"}
+        = t('rgallery.previous')
+      %a.rg-image-nav-next{href: "#"}
+        = t('rgallery.next')
+    {{/if}}
+    .rg-image
+    .rg-loading
+    .rg-caption-wrapper
+      .rg-caption{style: "display:none;"}
+        %pimport * as tfrpc from '/tfrpc.js';
+
+tfrpc.register(function delete_user(user) {
+	return core.deleteUser(user);
+});
+
+tfrpc.register(function global_settings_set(key, value) {
+	return core.globalSettingsSet(key, value);
+});
+
+async function main() {
+	try {
+		let data = {
+			users: {},
+			granted: await core.allPermissionsGranted(),
+			settings: await core.globalSettingsDescriptions(),
+		};
+		for (let user of await core.users()) {
+			data.users[user] = await core.permissionsForUser(user);
+		}
+		await app.setDocument(
+			utf8Decode(getFile('index.html')).replace('$data', JSON.stringify(data))
+		);
+	} catch {
+		await app.setDocument(
+			'<span style="color: #f00">Only an administrator can modify these settings.</span>'
+		);
